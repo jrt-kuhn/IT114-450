@@ -8,11 +8,26 @@ public class NumberGuesser {
         try (Scanner input = new Scanner(System.in);) {
             System.out.println("Welcome to NumberGuesser2.0");
             System.out.println("To exit, type the word 'quit'.");
-
+            
+            //IMPLEMENTATION #2 Adding difficulty selector (jck38, 6/11/22)
+            System.out.println("First let's select a difficulty:");
+            System.out.println("Enter E (for easy), M (for medium) or H (for hard).");
+            String difficulty = input.nextLine();
+            int maxStrikes = 5;
+            
+            if (difficulty.equalsIgnoreCase("e"))
+               maxStrikes = 8;
+            
+            else if (difficulty.equalsIgnoreCase("m"))
+                maxStrikes = 5;
+            
+            else if (difficulty.equalsIgnoreCase("h"))
+                maxStrikes = 3;
+            
             // let's make it interesting with levels and strikes
             int level = 1;
             int strikes = 0;
-            int maxStrikes = 5;
+            //int maxStrikes = 5;
             int number = -1;
             boolean pickNewRandom = true;
             do {
@@ -50,7 +65,14 @@ public class NumberGuesser {
                         pickNewRandom = true;
 
                     } else {
-                        System.out.println("That's wrong");
+                        //IMPLEMENTATION #1 Displaying Higher or Lower (jck38, 6/11/22)
+                        if (guess > number)
+                            System.out.println("Too high!");
+                        
+                        else if (guess < number)
+                                System.out.println("Too low!");
+                        
+                        //System.out.println("That's wrong");
                         strikes++;
                         if (strikes >= maxStrikes) {
                             System.out.println("Uh oh, looks like you need to get some more practice.");
